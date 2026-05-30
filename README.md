@@ -1,4 +1,4 @@
-Análise Exploratória de Dados (AED) - Varejo 🛒📊
+##Análise Exploratória de Dados (AED) - Varejo 🛒📊
 
 Aluno(a): PAULO ROBERTO SERAFIM
 
@@ -6,11 +6,11 @@ Turma: Análise de Dados com Python [T1]
 
 Módulo: 1 - Semana 07
 
-🎯 Sobre o Projeto
+##🎯 Sobre o Projeto
 
 Este repositório contém um mini-projeto de Análise Exploratória de Dados (AED) aplicado a uma base de dados de varejo. O objetivo é demonstrar a aplicação prática de processos de ETL (Extract, Transform, Load) utilizando Python. O script processa os dados brutos, realiza tratamentos e limpezas avançadas, extrai estatísticas, exporta uma base higienizada e, por fim, gera um Dashboard interativo com os resultados.
 
-🚀 Como executar este projeto
+##🚀 Como executar este projeto
 
 Para rodar este script localmente na sua máquina, siga o passo a passo abaixo:
 
@@ -39,11 +39,11 @@ Acompanhe o log (relatório) gerado no terminal detalhando todas as etapas de li
 
 Ao final, a janela do Dashboard será aberta com 3 gráficos. Feche a janela dos gráficos para que o script seja encerrado e o arquivo base_varejo_limpa.csv seja salvo na sua pasta.
 
-🔍 Entendendo o Código Passo a Passo
+##🔍 Entendendo o Código Passo a Passo
 
 O script principal (main.py) foi estruturado em 5 Sprints e um bloco final de visualização. Abaixo, detalhamos o que cada função e parte do código realiza:
 
-📥 SPRINT 1: Importação e Exploração Inicial
+##📥 SPRINT 1: Importação e Exploração Inicial
 
 import pandas as pd e import matplotlib.pyplot as plt: Importa as bibliotecas fundamentais do projeto.
 
@@ -53,7 +53,7 @@ df.shape: Retorna uma tupla contendo o número total de linhas e colunas da tabe
 
 df.dtypes: Lista o tipo de dado de cada coluna (ex: inteiro, texto/objeto, decimal), ajudando a identificar o que precisa ser convertido nas próximas etapas.
 
-🧹 SPRINT 2: Transformação de Dados e Regex
+##🧹 SPRINT 2: Transformação de Dados e Regex
 
 Nesta etapa, formatamos os dados para os tipos corretos do Python:
 
@@ -63,7 +63,7 @@ pd.to_datetime(..., dayfirst=True, errors='coerce'): Converte a coluna de data (
 
 .str.replace(r'\D', '', regex=True): Uso de Expressões Regulares (Regex). O \D encontra "tudo que não for número" e substitui por vazio, garantindo que o ID da compra contenha apenas números puros.
 
-🧽 SPRINT 3: Tratamento de Nulos e Duplicatas
+##🧽 SPRINT 3: Tratamento de Nulos e Duplicatas
 
 df.isnull().sum() e df.duplicated().sum(): Funções de diagnóstico para contar onde estão os "buracos" e as repetições na base de dados.
 
@@ -73,7 +73,7 @@ Função Condicional preencher_categoria(valor): Uma função customizada aplica
 
 df.fillna(0): Preenche valores nulos em colunas numéricas (como dimensões físicas, se existissem) com zero, justificando que a ausência de valor significa ausência da medida.
 
-📈 SPRINT 4: Estatística Descritiva e Agrupamentos
+##📈 SPRINT 4: Estatística Descritiva e Agrupamentos
 
 Estatísticas (Média, Moda, Quartis): O código aplica funções matemáticas nativas do pandas sobre a coluna de número de filhos: .mean() (média), .median() (mediana), .std() (desvio padrão), .min() / .max(), e .quantile(0.25) para calcular os quartis estatísticos.
 
@@ -81,11 +81,11 @@ df.groupby('PR_CAT')['CO_ID'].count(): Agrupa os dados por Categoria e conta o n
 
 pd.pivot_table(..., aggfunc=['count', 'mean']): Cria uma tabela dinâmica (pivot) cruzando o "Gênero" com a coluna de "Filhos", aplicando duas operações simultâneas: contagem de clientes e a média de filhos por gênero.
 
-💾 SPRINT 5: Relatório e Exportação (Load)
+##💾 SPRINT 5: Relatório e Exportação (Load)
 
 df.to_csv('base_varejo_limpa.csv', index=False): Pega todo o DataFrame limpo que está na memória do Python e cria um novo arquivo CSV físico na pasta do computador. O index=False impede que o índice numérico do pandas vire uma coluna inútil no arquivo final.
 
-📊 DASHBOARD: Visualização de Dados (Matplotlib)
+##📊 DASHBOARD: Visualização de Dados (Matplotlib)
 
 plt.subplots(nrows=1, ncols=3): Cria a "tela" do nosso painel com espaço para 3 gráficos alinhados lado a lado.
 
@@ -94,7 +94,7 @@ plt.subplots(nrows=1, ncols=3): Cria a "tela" do nosso painel com espaço para 3
 plt.show(): É o comando que efetivamente renderiza a janela na tela do usuário e pausa a execução do script até a janela ser fechada.
 
 
-💡 Reflexão e Principais Insights
+##💡 Reflexão e Principais Insights
 
 O tratamento de dados (ETL) provou-se essencial. A limpeza eliminou distorções e garantiu métricas precisas para a análise. A partir dos dados higienizados, observamos que:
 
