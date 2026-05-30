@@ -219,10 +219,68 @@ print(" Verifique o arquivo README.md para a reflexão teórica e os insights.")
 print("="*78 + "\n")
 
 
-# (DASHBOARD permanecerá comentado nesta etapa final inicial.)
-"""
+# =====================================================================
 # DASHBOARD GRÁFICO (VISUALIZAÇÃO DOS DADOS)
-# (conteúdo omitido nesta versão; será restaurado no commit seguinte)
-"""
+# =====================================================================
+print("\n--- GERANDO DASHBOARD GRÁFICO ---\n")
 
-print("\n(Versão incremental: SPRINT 5 ativado neste commit.)")
+# Cria uma figura grande para acomodar 3 gráficos diferentes (1 linha, 3 colunas)
+fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(18, 6))
+fig.canvas.manager.set_window_title('Dashboard de Análise de Varejo') # Título da janela
+
+
+# =====================================================================
+# ANÁLISE 1: Produtos mais vendidos (Volume de compras por Categoria)
+# =====================================================================
+# Agrupado por Categoria do Produto e contamos quantas Notas Fiscais (CO_ID) existem
+vendas_por_categoria_grafico = df.groupby('PR_CAT')['CO_ID'].count().sort_values(ascending=False)
+
+# Gerado um gráfico de barras no primeiro espaço (axes[0])
+vendas_por_categoria_grafico.plot(kind='bar', ax=axes[0], color='skyblue', edgecolor='black')
+axes[0].set_title('Top Categorias Mais Vendidas', fontsize=12, fontweight='bold')
+axes[0].set_xlabel('Categoria do Produto')
+axes[0].set_ylabel('Quantidade de Vendas (Notas)')
+axes[0].tick_params(axis='x', rotation=45) # Inclina o texto do eixo X para não encavalar
+
+
+# =====================================================================
+# ANÁLISE 2: Distribuição de Clientes por Classe Econômica
+# =====================================================================
+# Agrupado pela Classe (CL_SEG) e contamos os clientes ÚNICOS (nunique)
+# Usado nunique() no CL_ID para não contar o mesmo cliente duas vezes se ele comprou mais de uma vez.
+clientes_por_segmento = df.groupby('CL_SEG')['CL_ID'].nunique()
+
+# Gerado um gráfico de pizza no segundo espaço (axes[1])
+clientes_por_segmento.plot(kind='pie', ax=axes[1], autopct='%1.1f%%', startangle=90, cmap='Set3')
+axes[1].set_title('Divisão de Clientes por Classe (A, B, C)', fontsize=12, fontweight='bold')
+axes[1].set_ylabel('') # Tira o rótulo lateral do eixo Y que fica feio em gráfico de pizza
+
+
+# =====================================================================
+# ANÁLISE 3: Preferência de Categoria por Gênero
+# =====================================================================
+# Agrupado por Categoria E Gênero, contamos as vendas e usamos .unstack() 
+# para colocar os Gêneros lado a lado nas colunas
+cat_por_genero = df.groupby(['PR_CAT', 'CL_GENERO'])['CO_ID'].count().unstack()
+
+# Gerado um gráfico de barras agrupadas no terceiro espaço (axes[2])
+cat_por_genero.plot(kind='bar', ax=axes[2], stacked=False, colormap='viridis', edgecolor='black')
+axes[2].set_title('Vendas por Categoria e Gênero', fontsize=12, fontweight='bold')
+axes[2].set_xlabel('Categoria do Produto')
+axes[2].set_ylabel('Quantidade de Vendas')
+axes[2].legend(title='Gênero')
+axes[2].tick_params(axis='x', rotation=45)
+
+
+# =====================================================================
+# AJUSTES FINAIS E EXIBIÇÃO DA TELA
+# =====================================================================
+# Ajusta o espaçamento entre os gráficos para não ficar nada sobreposto
+plt.tight_layout()
+
+# Mantendo a janela aberta após execução script para que o usuário possa analisar os gráficos.
+# Ele exibe a interface gráfica e "trava" o script até você fechar no 'X' da janela.
+print("\nAbrindo os gráficos... Feche a janela de gráficos para encerrar o script.")
+plt.show()
+
+print("\n(Versão incremental: SPRINT 6 - DASHBOARD ativado neste commit.)")
