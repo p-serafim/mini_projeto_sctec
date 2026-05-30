@@ -20,9 +20,9 @@ Certifique-se de ter o Python (versão 3.8 ou superior) instalado no seu computa
 Você precisará de duas bibliotecas externas: pandas (para manipulação de dados) e matplotlib (para geração dos gráficos).
 
 Abra o terminal do seu sistema ou do VS Code e instale as dependências com o comando:
-
+```bash
 pip install pandas matplotlib
-
+```
 
 2. Executando o Script
 
@@ -31,9 +31,9 @@ Faça o download ou clone este repositório.
 Certifique-se de que os arquivos main.py e base_varejo.csv estão na mesma pasta.
 
 No terminal, navegue até a pasta do projeto e execute:
-
+```bash
 python main.py
-
+```
 
 Acompanhe o log (relatório) gerado no terminal detalhando todas as etapas de limpeza.
 
