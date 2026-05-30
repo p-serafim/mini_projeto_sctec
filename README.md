@@ -98,10 +98,10 @@ Estatísticas (Média, Moda, Quartis): O código aplica funções matemáticas n
 
 O tratamento de dados (ETL) provou-se essencial. A limpeza eliminou distorções e garantiu métricas precisas para a análise. A partir dos dados higienizados, observamos que:
 
-Eficiência do Tratamento: A etapa de limpeza identificou e removeu 96.553 linhas duplicadas da base bruta original, evitando um superdimensionamento irreal das métricas e garantindo a qualidade da informação analisada.
+**Eficiência do Tratamento:** A etapa de limpeza identificou e removeu 96.553 linhas duplicadas da base bruta original, evitando um superdimensionamento irreal das métricas e garantindo a qualidade da informação analisada.
 
-Categorias de Maior Impacto: A categoria mais vendida foi corretamente identificada como Alimentos, liderando o ranking de forma isolada com 384.197 vendas registradas.
+**Categorias de Maior Impacto:** A categoria mais vendida foi corretamente identificada como Alimentos, liderando o ranking de forma isolada com 384.197 vendas registradas.
 
-Perfil Familiar: O perfil médio do cliente analisado possui cerca de 1.15 filhos, com um desvio padrão de 1.42. No entanto, a moda (valor mais repetido) ficou em 0, indicando que a maioria absoluta das transações é feita por clientes que não declaram filhos.
+**Perfil Familiar:** O perfil médio do cliente analisado possui cerca de 1.15 filhos, com um desvio padrão de 1.42. No entanto, a moda (valor mais repetido) ficou em 0, indicando que a maioria absoluta das transações é feita por clientes que não declaram filhos.
 
-Comportamento por Gênero: O cruzamento de dados na Pivot Table revelou que o público Feminino (F) lidera o volume de compras na base, com um total de 382.427 registros válidos. Por outro lado, o público Masculino (M) apresenta uma média ligeiramente maior de filhos (1.21 contra 1.09).
+**Comportamento por Gênero:** O cruzamento de dados na Pivot Table revelou que o público Feminino (F) lidera o volume de compras na base, com um total de 382.427 registros válidos. Por outro lado, o público Masculino (M) apresenta uma média ligeiramente maior de filhos (1.21 contra 1.09).
