@@ -119,10 +119,82 @@ print(f"\nQuantidade de linhas duplicadas (DEPOIS): {df.duplicated().sum()}")
 print("\n" + "="*78 + "\n")
 
 
-# (SPRINT 4..5 e DASHBOARD permanecerão comentados nesta etapa incremental.)
-"""
 # SPRINT 4: ESTATÍSTICA DESCRITIVA E AGRUPAMENTOS
+# ======================================================================
+print("\n--- SPRINT 4: ESTATÍSTICA DESCRITIVA E AGRUPAMENTOS ---\n")
+
+# 1. Estatística Descritiva para a coluna "Número de filhos"
+coluna_filhos = 'CL_FHL' # Usando a coluna exata da sua base
+
+if coluna_filhos in df.columns:
+    print(f"1. Estatísticas Descritivas para a coluna '{coluna_filhos}':")
+    
+    # Garantindo que a coluna seja tratada como número
+    df[coluna_filhos] = pd.to_numeric(df[coluna_filhos], errors='coerce')
+    
+    # Calculando os parâmetros exigidos
+    contagem = df[coluna_filhos].count()
+    media = df[coluna_filhos].mean()
+    mediana = df[coluna_filhos].median()
+    desvio_padrao = df[coluna_filhos].std()
+    moda = df[coluna_filhos].mode()[0]
+    minimo = df[coluna_filhos].min()
+    maximo = df[coluna_filhos].max()
+    quartil_25 = df[coluna_filhos].quantile(0.25)
+    quartil_50 = df[coluna_filhos].quantile(0.50) # Equivalente à mediana
+    quartil_75 = df[coluna_filhos].quantile(0.75)
+    
+    # Exibindo os resultados formatados
+    print(f"  - Contagem: {contagem}")
+    print(f"  - Média: {media:.2f}")
+    print(f"  - Mediana: {mediana}")
+    print(f"  - Desvio Padrão: {desvio_padrao:.2f}")
+    print(f"  - Moda: {moda}")
+    print(f"  - Mínimo: {minimo}")
+    print(f"  - Máximo: {maximo}")
+    print(f"  - 1º Quartil (25%): {quartil_25}")
+    print(f"  - 2º Quartil (50%): {quartil_50}")
+    print(f"  - 3º Quartil (75%): {quartil_75}\n")
+else:
+    print(f"AVISO: Coluna '{coluna_filhos}' não encontrada.\n")
+
+# 2. Explorando Padrões de Agrupamento
+print("2. Padrões de Agrupamento:\n")
+
+# Agrupamento A: Quantidade de produtos vendidos por Categoria (já que não temos 'Valor')
+if coluna_categoria in df.columns:
+    # Agrupamos por Categoria e contamos o número de identificadores (CO_ID)
+    vendas_por_categoria = df.groupby(coluna_categoria)['CO_ID'].count().reset_index()
+    vendas_por_categoria.columns = [coluna_categoria, 'Qtd_Vendida']
+    vendas_por_categoria = vendas_por_categoria.sort_values(by='Qtd_Vendida', ascending=False)
+    
+    print(f"A) Quantidade de Vendas por Categoria ('{coluna_categoria}'):")
+    print(vendas_por_categoria.to_string(index=False))
+    print("\n")
+
+# Agrupamento B: Contagem de compras e Média de Filhos por Gênero usando pivot_table()
+coluna_genero = 'CL_GENERO'
+
+if coluna_genero in df.columns and coluna_filhos in df.columns:
+    # Pivot table usando a coluna filhos para calcular a média, e o próprio CL_FHL para contar os registros
+    agrupamento_genero = pd.pivot_table(
+        df, 
+        values=coluna_filhos, 
+        index=coluna_genero, 
+        aggfunc=['count', 'mean']
+    )
+    # Renomeando colunas pra ficar mais bonito no terminal
+    agrupamento_genero.columns = ['Qtd_Compras_Registradas', 'Media_de_Filhos']
+    
+    print(f"B) Análise por Gênero ('{coluna_genero}'):")
+    print(agrupamento_genero.round(2))
+    print("\n" + "="*78 + "\n")
+
+
+# (SPRINT 5 e DASHBOARD permanecerão comentados nesta etapa incremental.)
+"""
+# SPRINT 5: RELATÓRIO FINAL E EXPORTAÇÃO DOS DADOS LIMPOS
 # (conteúdo omitido nesta versão; será restaurado no commit seguinte)
 """
 
-print("\n(Versão incremental: SPRINT 3 ativado neste commit.)")
+print("\n(Versão incremental: SPRINT 4 ativado neste commit.)")
