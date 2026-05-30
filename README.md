@@ -28,7 +28,7 @@ pip install pandas matplotlib
 
 Faça o download ou clone este repositório.
 
-Certifique-se de que os arquivos main.py e base_varejo.csv estão na mesma pasta.
+Certifique-se de que os arquivos ```main.py``` e ```base_varejo.csv``` estão na mesma pasta.
 
 No terminal, navegue até a pasta do projeto e execute:
 ```bash
