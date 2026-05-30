@@ -77,9 +77,52 @@ print("\n" + "="*78 + "\n")
 
 
 # (SPRINT 3..5 e DASHBOARD permanecerão comentados nesta etapa incremental.)
-"""
 # SPRINT 3: LIMPEZA DE NULOS E DUPLICATAS
+# ======================================================================
+print("\n--- SPRINT 3: LIMPANDO NULOS E DUPLICATAS ---\n")
+
+# 1. Verificando os dados nulos e duplicados ANTES da limpeza
+print("Quantidade de valores nulos por coluna (ANTES):")
+print(df.isnull().sum())
+print(f"\nQuantidade de linhas duplicadas (ANTES): {df.duplicated().sum()}\n")
+
+# 2. Remoção de linhas duplicadas
+df = df.drop_duplicates()
+print("✓ Linhas duplicadas exatas removidas da base.")
+
+# 3. Tratamento de nulos com condicional (if/else) na coluna de Categoria
+if coluna_categoria in df.columns:
+    def preencher_categoria(valor):
+        if pd.isna(valor) or str(valor).strip() == "" or str(valor).lower() == "nan":
+            return "Sem Categoria"
+        else:
+            return valor
+            
+    df[coluna_categoria] = df[coluna_categoria].apply(preencher_categoria)
+    print(f"✓ Valores nulos em '{coluna_categoria}' substituídos por 'Sem Categoria' (usando if/else).")
+
+# 4. Tratamento de nulos em dimensões físicas com JUSTIFICATIVA
+# Como a base não possui colunas de dimensão física, deixamos a lista vazia.
+colunas_dimensoes = [] 
+
+for col in colunas_dimensoes:
+    if col in df.columns:
+        # Optei por preencher as dimensões físicas nulas com o valor 0 (zero).
+        # Motivo: Um valor nulo pode indicar que a medida não se aplica ou não foi informada.
+        df[col] = df[col].fillna(0)
+        print(f"✓ Nulos na dimensão física '{col}' preenchidos com 0.")
+
+# 5. Verificando o resultado final da limpeza
+print("\nQuantidade de valores nulos por coluna (DEPOIS):")
+print(df.isnull().sum())
+print(f"\nQuantidade de linhas duplicadas (DEPOIS): {df.duplicated().sum()}")
+print("\n" + "="*78 + "\n")
+
+
+# (SPRINT 4..5 e DASHBOARD permanecerão comentados nesta etapa incremental.)
+"""
+# SPRINT 4: ESTATÍSTICA DESCRITIVA E AGRUPAMENTOS
 # (conteúdo omitido nesta versão; será restaurado no commit seguinte)
 """
 
-print("\n(Versão incremental: SPRINT 2 ativado neste commit.)")
+print("\n(Versão incremental: SPRINT 3 ativado neste commit.)")
