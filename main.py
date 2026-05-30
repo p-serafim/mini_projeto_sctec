@@ -191,10 +191,38 @@ if coluna_genero in df.columns and coluna_filhos in df.columns:
     print("\n" + "="*78 + "\n")
 
 
-# (SPRINT 5 e DASHBOARD permanecerão comentados nesta etapa incremental.)
-"""
 # SPRINT 5: RELATÓRIO FINAL E EXPORTAÇÃO DOS DADOS LIMPOS
+# ======================================================================
+print("\n--- SPRINT 5: RELATÓRIO FINAL E EXPORTAÇÃO ---\n")
+
+# Construção dos contadores do relatório final
+linhas_finais = df.shape[0]
+linhas_removidas = linhas - linhas_finais
+
+print("Resumo do Processamento (Contadores Finais):")
+print(f"  - Total de registros originais: {linhas}")
+print(f"  - Total de registros após limpeza: {linhas_finais}")
+print(f"  - Registros removidos (duplicados): {linhas_removidas}")
+print(f"  - Total de colunas analisadas: {df.shape[1]}\n")
+
+# Exportando a base de dados limpa (df_limpo) conforme exigido para a entrega
+nome_arquivo_limpo = 'base_varejo_limpa.csv'
+try:
+    df.to_csv(nome_arquivo_limpo, index=False, encoding='utf-8')
+    print(f"✓ Base de dados limpa exportada com sucesso para o arquivo: '{nome_arquivo_limpo}'")
+except Exception as e:
+    print(f"Erro ao exportar o arquivo: {e}")
+
+print("\n" + "="*78)
+print(" ANÁLISE EXPLORATÓRIA CONCLUÍDA COM SUCESSO! ")
+print(" Verifique o arquivo README.md para a reflexão teórica e os insights.")
+print("="*78 + "\n")
+
+
+# (DASHBOARD permanecerá comentado nesta etapa final inicial.)
+"""
+# DASHBOARD GRÁFICO (VISUALIZAÇÃO DOS DADOS)
 # (conteúdo omitido nesta versão; será restaurado no commit seguinte)
 """
 
-print("\n(Versão incremental: SPRINT 4 ativado neste commit.)")
+print("\n(Versão incremental: SPRINT 5 ativado neste commit.)")
